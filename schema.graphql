@@ -1,0 +1,447 @@
+input CarOwnerInformationInsertInput {
+  email: String
+  id: String
+  name: String
+  phone: String
+}
+
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+
+scalar ObjectId
+
+input CarSizeUpdateInput {
+  height: Int
+  width_inc: Int
+  long: Int
+  long_unset: Boolean
+  width_unset: Boolean
+  height_inc: Int
+  height_unset: Boolean
+  long_inc: Int
+  width: Int
+}
+
+type Query {
+  car(query: CarQueryInput): Car
+  cars(query: CarQueryInput, limit: Int = 100, sortBy: CarSortByInput): [Car]!
+}
+
+input CarOwnerInformationQueryInput {
+  name_lte: String
+  email_exists: Boolean
+  id_lte: String
+  name_gte: String
+  email_nin: [String]
+  phone_gt: String
+  name_gt: String
+  email_ne: String
+  phone_nin: [String]
+  phone_gte: String
+  name_lt: String
+  id_gte: String
+  phone_exists: Boolean
+  email: String
+  name_nin: [String]
+  id_nin: [String]
+  AND: [CarOwnerInformationQueryInput!]
+  name: String
+  id_ne: String
+  OR: [CarOwnerInformationQueryInput!]
+  email_gte: String
+  phone_lte: String
+  phone_in: [String]
+  phone_lt: String
+  id_exists: Boolean
+  email_lt: String
+  name_in: [String]
+  id_gt: String
+  email_lte: String
+  phone_ne: String
+  email_gt: String
+  id_in: [String]
+  id_lt: String
+  email_in: [String]
+  phone: String
+  id: String
+  name_exists: Boolean
+  name_ne: String
+}
+
+input CarUpdateInput {
+  expirationDate: String
+  exteriorColor_unset: Boolean
+  interiorColor_unset: Boolean
+  price_inc: Int
+  price: Int
+  type: String
+  combustible: String
+  model: String
+  sunroof: Boolean
+  year_inc: Int
+  approved_unset: Boolean
+  driveType_unset: Boolean
+  transmission_unset: Boolean
+  sunroof_unset: Boolean
+  size_unset: Boolean
+  size: CarSizeUpdateInput
+  expirationDate_unset: Boolean
+  publishDate_unset: Boolean
+  model_unset: Boolean
+  exteriorColor: String
+  type_unset: Boolean
+  plaqueNumber: String
+  images: [String]
+  kilometers: Int
+  ownerInformation_unset: Boolean
+  brand: String
+  combustible_unset: Boolean
+  passengers_inc: Int
+  kilometers_inc: Int
+  ownerInformation: CarOwnerInformationUpdateInput
+  images_unset: Boolean
+  _id_unset: Boolean
+  interiorColor: String
+  passengers_unset: Boolean
+  brand_unset: Boolean
+  publishDate: String
+  _id: String
+  kilometers_unset: Boolean
+  price_unset: Boolean
+  approved: Boolean
+  driveType: String
+  year_unset: Boolean
+  transmission: String
+  passengers: Int
+  year: Int
+  plaqueNumber_unset: Boolean
+}
+
+input CarOwnerInformationUpdateInput {
+  name: String
+  name_unset: Boolean
+  phone: String
+  phone_unset: Boolean
+  email: String
+  email_unset: Boolean
+  id: String
+  id_unset: Boolean
+}
+
+type CarOwnerInformation {
+  email: String
+  id: String
+  name: String
+  phone: String
+}
+
+input CarSizeQueryInput {
+  height_gte: Int
+  long_gt: Int
+  AND: [CarSizeQueryInput!]
+  height_lt: Int
+  width_gte: Int
+  height_lte: Int
+  width_in: [Int]
+  long_exists: Boolean
+  height_gt: Int
+  width_lte: Int
+  height_exists: Boolean
+  long_lt: Int
+  height: Int
+  width_nin: [Int]
+  width_ne: Int
+  width_gt: Int
+  height_ne: Int
+  long: Int
+  OR: [CarSizeQueryInput!]
+  long_in: [Int]
+  width_lt: Int
+  long_nin: [Int]
+  height_nin: [Int]
+  long_gte: Int
+  height_in: [Int]
+  long_lte: Int
+  long_ne: Int
+  width_exists: Boolean
+  width: Int
+}
+
+input CarSizeInsertInput {
+  width: Int
+  height: Int
+  long: Int
+}
+
+type Car {
+  _id: String!
+  approved: Boolean!
+  brand: String!
+  combustible: String!
+  driveType: String
+  expirationDate: String!
+  exteriorColor: String!
+  images: [String]!
+  interiorColor: String!
+  kilometers: Int!
+  model: String!
+  ownerInformation: CarOwnerInformation!
+  passengers: Int!
+  plaqueNumber: String
+  price: Int!
+  publishDate: String!
+  size: CarSize
+  sunroof: Boolean!
+  transmission: String!
+  type: String!
+  year: Int
+}
+
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+
+input CarInsertInput {
+  approved: Boolean!
+  exteriorColor: String!
+  ownerInformation: CarOwnerInformationInsertInput!
+  interiorColor: String!
+  _id: String
+  plaqueNumber: String
+  kilometers: Int!
+  price: Int!
+  sunroof: Boolean!
+  brand: String!
+  images: [String]!
+  model: String!
+  type: String!
+  year: Int
+  size: CarSizeInsertInput
+  publishDate: String!
+  driveType: String
+  passengers: Int!
+  combustible: String!
+  transmission: String!
+  expirationDate: String!
+}
+
+type CarSize {
+  height: Int
+  long: Int
+  width: Int
+}
+
+type Mutation {
+  deleteManyCars(query: CarQueryInput): DeleteManyPayload
+  deleteOneCar(query: CarQueryInput!): Car
+  insertManyCars(data: [CarInsertInput!]!): InsertManyPayload
+  insertOneCar(data: CarInsertInput!): Car
+  replaceOneCar(query: CarQueryInput, data: CarInsertInput!): Car
+  updateManyCars(query: CarQueryInput, set: CarUpdateInput!): UpdateManyPayload
+  updateOneCar(query: CarQueryInput, set: CarUpdateInput!): Car
+  upsertOneCar(query: CarQueryInput, data: CarInsertInput!): Car
+}
+
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+
+input CarQueryInput {
+  size_exists: Boolean
+  type_nin: [String]
+  type_gte: String
+  kilometers: Int
+  publishDate_lt: String
+  images_in: [String]
+  size: CarSizeQueryInput
+  year_gte: Int
+  driveType_lt: String
+  interiorColor_exists: Boolean
+  combustible_nin: [String]
+  interiorColor_ne: String
+  model_exists: Boolean
+  year_nin: [Int]
+  images_exists: Boolean
+  year_ne: Int
+  _id_in: [String]
+  year_exists: Boolean
+  combustible: String
+  plaqueNumber_in: [String]
+  passengers_exists: Boolean
+  price_nin: [Int]
+  combustible_lt: String
+  approved_ne: Boolean
+  expirationDate_in: [String]
+  kilometers_gte: Int
+  publishDate: String
+  kilometers_nin: [Int]
+  plaqueNumber_nin: [String]
+  brand_lte: String
+  interiorColor_nin: [String]
+  type_exists: Boolean
+  exteriorColor_lt: String
+  driveType_exists: Boolean
+  plaqueNumber: String
+  expirationDate: String
+  model_lte: String
+  plaqueNumber_lt: String
+  _id_gt: String
+  kilometers_gt: Int
+  year: Int
+  exteriorColor_nin: [String]
+  passengers_lt: Int
+  passengers_ne: Int
+  combustible_lte: String
+  price_gte: Int
+  brand_gte: String
+  expirationDate_lt: String
+  type_lt: String
+  exteriorColor: String
+  price_lte: Int
+  combustible_exists: Boolean
+  _id_lt: String
+  brand_gt: String
+  model_ne: String
+  brand_exists: Boolean
+  expirationDate_gt: String
+  driveType_nin: [String]
+  expirationDate_exists: Boolean
+  type_gt: String
+  publishDate_lte: String
+  type_ne: String
+  combustible_ne: String
+  combustible_gte: String
+  plaqueNumber_gt: String
+  transmission_nin: [String]
+  plaqueNumber_gte: String
+  expirationDate_nin: [String]
+  expirationDate_ne: String
+  interiorColor_gte: String
+  images: [String]
+  AND: [CarQueryInput!]
+  combustible_gt: String
+  driveType_gt: String
+  model_in: [String]
+  plaqueNumber_lte: String
+  driveType_ne: String
+  driveType_lte: String
+  interiorColor: String
+  year_in: [Int]
+  driveType_gte: String
+  driveType_in: [String]
+  publishDate_nin: [String]
+  kilometers_lte: Int
+  _id_ne: String
+  transmission_lt: String
+  kilometers_exists: Boolean
+  sunroof: Boolean
+  exteriorColor_gt: String
+  approved_exists: Boolean
+  price_gt: Int
+  interiorColor_gt: String
+  expirationDate_lte: String
+  price_in: [Int]
+  interiorColor_in: [String]
+  price_exists: Boolean
+  year_gt: Int
+  images_nin: [String]
+  publishDate_gte: String
+  exteriorColor_in: [String]
+  _id_exists: Boolean
+  passengers_gt: Int
+  ownerInformation_exists: Boolean
+  model: String
+  _id_gte: String
+  exteriorColor_exists: Boolean
+  driveType: String
+  kilometers_lt: Int
+  plaqueNumber_exists: Boolean
+  approved: Boolean
+  interiorColor_lt: String
+  type_lte: String
+  brand_lt: String
+  transmission_ne: String
+  ownerInformation: CarOwnerInformationQueryInput
+  publishDate_exists: Boolean
+  passengers_in: [Int]
+  transmission_gte: String
+  publishDate_ne: String
+  transmission_gt: String
+  OR: [CarQueryInput!]
+  transmission: String
+  _id_lte: String
+  type: String
+  passengers: Int
+  model_gt: String
+  model_nin: [String]
+  brand_ne: String
+  model_gte: String
+  passengers_nin: [Int]
+  _id_nin: [String]
+  type_in: [String]
+  price_ne: Int
+  transmission_lte: String
+  sunroof_exists: Boolean
+  model_lt: String
+  transmission_in: [String]
+  publishDate_in: [String]
+  year_lt: Int
+  kilometers_in: [Int]
+  brand: String
+  passengers_gte: Int
+  exteriorColor_lte: String
+  year_lte: Int
+  exteriorColor_ne: String
+  sunroof_ne: Boolean
+  brand_nin: [String]
+  interiorColor_lte: String
+  transmission_exists: Boolean
+  _id: String
+  combustible_in: [String]
+  publishDate_gt: String
+  price: Int
+  exteriorColor_gte: String
+  kilometers_ne: Int
+  brand_in: [String]
+  passengers_lte: Int
+  price_lt: Int
+  expirationDate_gte: String
+  plaqueNumber_ne: String
+}
+
+enum CarSortByInput {
+  EXTERIORCOLOR_ASC
+  TYPE_DESC
+  YEAR_ASC
+  BRAND_DESC
+  DRIVETYPE_ASC
+  EXTERIORCOLOR_DESC
+  KILOMETERS_ASC
+  PASSENGERS_DESC
+  PUBLISHDATE_DESC
+  TRANSMISSION_ASC
+  EXPIRATIONDATE_DESC
+  MODEL_ASC
+  MODEL_DESC
+  PRICE_ASC
+  PRICE_DESC
+  _ID_DESC
+  COMBUSTIBLE_ASC
+  TRANSMISSION_DESC
+  COMBUSTIBLE_DESC
+  _ID_ASC
+  PLAQUENUMBER_ASC
+  BRAND_ASC
+  EXPIRATIONDATE_ASC
+  KILOMETERS_DESC
+  PASSENGERS_ASC
+  PLAQUENUMBER_DESC
+  PUBLISHDATE_ASC
+  TYPE_ASC
+  DRIVETYPE_DESC
+  INTERIORCOLOR_ASC
+  INTERIORCOLOR_DESC
+  YEAR_DESC
+}
