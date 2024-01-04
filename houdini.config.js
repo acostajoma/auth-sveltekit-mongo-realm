@@ -1,8 +1,8 @@
 /** @type {import('houdini').ConfigFile} */
 const config = {
-    "plugins": {
-        "houdini-svelte": {}
-    }
-}
+	plugins: {
+		'houdini-svelte': {}
+	}
+};
 
-export default config
+export default config;
