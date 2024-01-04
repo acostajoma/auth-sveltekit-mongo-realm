@@ -41,6 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@cloudinary/url-gen": "^1.14.0",
 		"realm-web": "^2.0.0"
 	}
 }
