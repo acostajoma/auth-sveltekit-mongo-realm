@@ -9,11 +9,20 @@ declare global {
 		}
 	
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			accessToken : string | undefined
+			serverToken: string | undefined
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
 	}
 }
 
-export {};
+interface Stores {
+	appStore :  Writable<{app : App, user: User, resetAccessToken: undefined | NodeJS.Timeout }>
+}
+
+export {
+	Stores
+};
