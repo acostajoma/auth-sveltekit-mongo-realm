@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
+	import { onDestroy } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { initializeAuth } from '$lib/auth';
+	import { user } from '$lib/stores/user';
 
-	onMount(() => {
-		console.log('mounted');
-		const cleanup = initializeAuth();
-		return cleanup;
-	});
+	let userStore;
+	const unsubscribe = user.subscribe((value) => (userStore = value));
+
+	onDestroy(unsubscribe);
 </script>
 
 <button type="button" on:click={() => goto('/register')}>Register</button>

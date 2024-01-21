@@ -36,7 +36,7 @@ export async function confirmEmailUser(
 
 	try {
 		await app.emailPasswordAuth.confirmUser({ token, tokenId });
-		return { valid: true, message: 'Usuario registrado. Verifica tú correo.' } 
+		return { valid: true, message: 'Usuario verficado.' } 
 	} catch (error) {
 		let confirmationOutput = {valid : false,  status : 404 as NumericRange<400, 599> , message : 'Ha ocurrido un error al confirmar el usuario.'}
 		
@@ -44,7 +44,6 @@ export async function confirmEmailUser(
 			confirmationOutput = { ...confirmationOutput, message : 'El token de autenticación está expirado o es inválido.', status : 409}
 		} 
 
-    	console.log(error);
 		return confirmationOutput;
 	}
 }
@@ -60,9 +59,7 @@ export async function resendEmailConfirmationMessage(email:string) : Promise<{ v
 	try {
 		await app.emailPasswordAuth.resendConfirmationEmail({email})
 		return {valid : true , message : "Email de confirmación reenviado"}
-	} catch (error) {
-		console.log(error);
-		
+	} catch (error) {		
 		let confirmationOutput = {valid : false,  status : 404 as NumericRange<400, 599> , message : 'Ha ocurrido un error al confirmar el usuario.'}
 		if (error instanceof MongoDBRealmError){
 			if (error.errorCode === 'UserNotFound'){

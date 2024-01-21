@@ -7,7 +7,8 @@ const password = z
 	})
 	.min(8, {
 		message: 'El campo debe tener al menos 8 carateres.'
-	});
+	}
+);
 
 const email = z
 	.string({
@@ -17,7 +18,9 @@ const email = z
 	.email({
 		message: 'La dirección de correo electrónico debe tener un formato válido.'
 	})
-	.min(4, { message: 'El campo debe tener al menos 4 carateres.' });
+	.min(4, { message: 'El campo debe tener al menos 4 carateres.' 
+	}
+);
 
 export const registerSchema = z
 	.object({
@@ -28,6 +31,14 @@ export const registerSchema = z
 	.refine((data) => data.password === data.passwordConfirmation, {
 		message: 'Las contraseñas no coinciden.',
 		path: ['passwordConfirmation']
-	});
+	}
+);
+
+export const loginSchema = z
+	.object({
+		email,
+		password,
+	}
+)
 
 export const emailSchema = z.object({email})
